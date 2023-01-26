@@ -14,11 +14,19 @@
 			user-select: none;
 			display: block;
 			position: absolute;
-			top: 100px;
-			left: 200px;  /* <--- Change me! */
+			top: 300px;
+			left: 400px;  /* <--- Change me! */
 		}
 		.board{
 			height: 100vh;
+		}
+			webkit-background-size:cover
+            moz-background-size:cover
+            o-background-size:cover
+            background-size:cover
+		body {
+				background-image: url("paper.gif");
+ 				background-color: #b32c2c;
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -48,8 +56,9 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo() {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css("top", newPositionY);
 			}
 
 			// changes the text displayed on the Box
@@ -64,23 +73,26 @@
 			// TODO 2 - Variable declarations 
 			
 			var positionX = 0;
+			var positionY = 0;
 			var points = 0;
 			var speed = 10;
+			var speerY = 0;
+			var boardHeight = jQuery(window).height(); 
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			/*Your Code to Increase positionX by 10 HERE*/
 			function update() {
+				moveBoxTo(positionX, positionY);
 				positionX = positionX + speed;
-				moveBoxTo(positionX);
 				if (positionX > boardWidth){
 					speed = -speed;
-				};
-				else if(positionX <= 0){
+				}
+				else if (positionX < 0){
 					speed = -speed;
-				};
-				
+				}
+			}
 			
 
 			/* 
@@ -88,18 +100,19 @@
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
+			//points go up by 1
+			//the box gets faster
+			//the box changes position
 			function handleBoxClick() {
-				//points go up by 1
-				//the box gets faster
-				//the box changes position
 				positionX = 0;
-				changeBoxText(points);
-				If (speed = speed){
+				if (speed > 0){
 					speed +=3;
 				}
-				else if (speed !== speed){
+				else if (speed < 0){
 					speed -=3;
 				}
+				points = points + 1;
+				changeBoxText(points);
 			};
 		})();
 	</script>
