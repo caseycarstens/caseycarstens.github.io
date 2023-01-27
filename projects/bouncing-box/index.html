@@ -20,6 +20,11 @@
 		.board{
 			height: 100vh;
 		}
+		body {
+		background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Fauthoritative&psig=AOvVaw28Da2Fl4wvXYz5WVFnPLPV&ust=1674922471839000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCPiR4taS6PwCFQAAAAAdAAAAABAl");
+		background-color: #5a0e0e;
+	   }
+	   
 			
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -79,11 +84,18 @@
 			function update() {
 				moveBoxTo(positionX, positionY);
 				positionX = positionX + speed;
+				positionY = positionY + speedY;
 				if (positionX > boardWidth){
 					speed = -speed;
 				}
 				else if (positionX < 0){
-					speed = -speed;
+					speedY = -speedY;
+				}
+				else if (positionY > boardHeight){
+					speedY = -speedY;
+				}
+				else if (positionY < 0){
+					speedY = -speedY;
 				}
 			}
 			
@@ -104,9 +116,17 @@
 				else if (speed < 0){
 					speed -=3;
 				}
+				else if (speedY > 0){
+					speed +=3;
+				}
+				else if (speedY < 0){
+					speed -=3;
+				}
+				
 				points = points + 1;
 				changeBoxText(points);
 			};
+			
 		})();
 	</script>
 </body>
