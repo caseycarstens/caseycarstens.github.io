@@ -34,8 +34,8 @@ var init = function (window) {
         }
 
         // TODO 3 / 7 : Call the drawCircle() function 
-          for(var i =0; i <= 100; i++){
-                drawCircle([i]);
+          for(var i =0; i <= 100; i++){ // created a loof to draw circles with a max of 100
+                drawCircle(); // calls the drawCircle function
           }
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
@@ -53,10 +53,10 @@ var init = function (window) {
              
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
            
-            for(var i =0; i <= circles.length; i++){
-                var eachCircle = circles[i];
-                physikz.updatePosition(eachCircle[i]);
-                game.checkCirclePosition(eachCircle[i]);
+            for(var i =0; i < circles.length; i++){ //making a loop so i can call up to 100 circles all with different dimentions
+                var eachCircle = circles[i]; // creates a variable that takes the array of circles
+                physikz.updatePosition(eachCircle);// calls this argument 
+                game.checkCirclePosition(eachCircle);//calls another argument
             }
             // TODO 9 : Iterate over the array
            
@@ -71,15 +71,15 @@ var init = function (window) {
         game.checkCirclePosition = function(circle) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
-            if ( circle.x > canvas.width ) {
+            if ( circle.x > canvas.width ) { 
                 circle.x = 0;
             }
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
-            if (circle.x < 0){
+            if (circle.x < 0){ //iff statemnet that makes the circle.x less than 0
                 circle.x = canvas.width; // makes the circles come back on the right side 
             }
-            if (circle.y < 0){
+            if (circle.y < 0){ // if statement that makes circle.y less than 0
                 circle.y = canvas.height; // makes the circles come back down from the top
             }
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
