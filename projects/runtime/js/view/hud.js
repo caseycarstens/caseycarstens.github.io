@@ -13,8 +13,8 @@
     "integrity meter" which indicates our health. The returned object is a 
     create.js container which can be added to our game using the following code:
       
-        var hud = opspark.makeHud();
-        view.addChild(hud);
+    var hud = opspark.makeHud();
+    view.addChild(hud);
 
     Once the hud has been created you can update by using the 
     following junctions:
