@@ -60,11 +60,11 @@ var background = function (window) {
             
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-            var buildingHeights = '[300, 150, 175, 200, 275]';
-            var buildingColors = ["black","blue", "red"];
+            var buildingHeights = [300, 150, 175, 200, 275];
+            var buildingColors = ["black","blue", "red", "Green", "Yellow"];
             var building;
-            for (var i = 0; i < buildingHeights.length; ++i) {
-                var building = draw.rect(75, buildingHeights[i], buildingColors[i]);//draws a rectangele
+            for (var i = 0; i < 5; ++i) {
+                var building = draw.rect(75, buildingHeights[i], buildingColors[i], "Black", 1);//draws a rectangele
                 building.x = 200 * i;//multiplies the current iteration of the loop so that the buildings are 200
                 building.y = groundY - buildingHeights[i];//subtracts buildingHeight from ground Y
                 background.addChild(building);//add the building as a child to the backround
@@ -81,9 +81,9 @@ var background = function (window) {
               }
             */
             // TODO 4: Part 1 - Add a tree
-            tree = draw.bitmap("img/tree.png");
-            tree.x = 0;
-            tree.y = 0;
+            tree = draw.bitmap("img/tree.png");// uses bitmap to draw the image 
+            tree.x = canvasWidth -200;//assighnes an X value to the tree
+            tree.y = groundY -230;// assighnes a y value to the tree 
             background.addChild(tree);
             
         } // end of render function - DO NOT DELETE
@@ -98,7 +98,7 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 4: Part 2 - Move the tree!
-            tree.x = tree.x - 2;
+            tree.x = tree.x - 3;
 
             if (tree.x < -200) {
             tree.x = canvasWidth;
@@ -106,8 +106,11 @@ var background = function (window) {
             
             // TODO 5: Part 2 - Parallax
             for (var i = 0; i < buildings.length; i++){
-                var buildinjg = buildins[i];
-                building.x = building.x -1;
+                var building = buildings[i];
+                building.x = building.x -0.3;
+            }
+            if (building.x < -300){
+                building.x = canvasWidth;
             }
 
         } // end of update function - DO NOT DELETE
