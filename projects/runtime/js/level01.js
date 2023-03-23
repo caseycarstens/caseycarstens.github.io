@@ -32,19 +32,42 @@ var level01 = function (window) {
         function  createSpikes(x, y){
             var hitZoneSize = 25;// the size of the hitzone assighned to the var
             var damageFromObstacle = 10;// sets the damage amound and asisghns to a var
-            var spikeBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);//creates the obstacle and assighnes it to the var
-            spikeBladeHitZone.x = x;// assignes the x value using thge argument passed as the y parameter.
-            spikeBladeHitZone.y = y;// assignes the y value using thge argument passed as the y parameter.
+            var spikesHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);//creates the obstacle and assighnes it to the var
+            spikesHitZone.x = x;// assignes the x value using thge argument passed as the y parameter.
+            spikesHitZone.y = y;// assignes the y value using thge argument passed as the y parameter.
+            game.addGameItem(spikesHitZone);
             var obstacleImage = draw.bitmap("img/sawblade.png");// draws  the image of the sawblade.
-            sawBladeHitZone.addChild(obstacleImage);// adds the obstaceImage as a child of the sawBLadeHit Zone
+            spikesHitZone.addChild(obstacleImage);// adds the obstaceImage as a child of the sawBLadeHit Zone
             obstacleImage.x = -25; //modify the X value of the image to line up with the git zone
             obstacleImage.y = -25//modify the y value of the image to line up with the git zone 
         }
 
-        createSpikeBlade(400, groundY -100);
-        createSpikeBlade(600, groundY -100);
-        createSpikeBlade(800, groundY);
-        
+        createSpikes(400, groundY -100);
+        createSpikes(600, groundY -100);
+        createSpikes(800, groundY);
+
+        function createEnemy (){
+            var enemy = game.createGameItem("enemy", 25);
+            var redSquare = draw.rect(50, 50, "red");
+            redSquare.x = -25;
+            redSquare.y = -25;
+            enemy.addChild(redSquare);
+            enemy.x = 400;
+            enemy.y = groundY - 50;
+            game.addGameItem(enemy);
+            enemy.velocityX = -1.5;
+            enemy.onPlayerCollision = function () {
+                game.changeIntegrity(damage);
+        };        
+            enemy.onProjectileCollision = function ( ){
+            game.changeIntegrity(10);
+            game.increaseScore(100);
+            enemy.fadeOut();
+        }
+    }
+        createEnemy(400, groundT-50,-1.5,"Red");
+        createEnemy(500, groundT-50,-1,:"Organge)
+        ;
         
         // DO NOT EDIT CODE BELOW HERE
     }
