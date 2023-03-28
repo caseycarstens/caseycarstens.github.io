@@ -61,7 +61,7 @@ var background = function (window) {
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             var buildingHeights = [500, 350, 475, 600, 575];
-            var buildingColors = ["Grey","Grey", "Gsey", "Grey"];
+            var buildingColors = ["Grey","Grey", "Gsey", "Grey","blue"];
             var building;
             for (var i = 0; i < 5; ++i) {
                 var building = draw.rect(75, buildingHeights[i], buildingColors[i], "Grey", 1);//draws a rectangele

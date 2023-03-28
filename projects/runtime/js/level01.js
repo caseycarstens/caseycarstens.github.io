@@ -19,6 +19,7 @@ var level01 = function (window) {
                 { "type": "sawblade", "x": 400, "y": groundY },
                 { "type": "sawblade", "x": 600, "y": groundY },
                 { "type": "sawblade", "x": 900, "y": groundY },
+                { "type": "enemy", "x": 400, "y": groundY -50 },
             ]
         };
         window.levelData = levelData;
@@ -65,9 +66,28 @@ var level01 = function (window) {
             enemy.fadeOut();
         }
     }
-        createEnemy(400, groundT-50,-1.5,"Red");
-        createEnemy(500, groundT-50,-1,:"Organge)
-        ;
+        createEnemy(600, groundY-50,-1.5,"Red");
+        createEnemy(600, groundY-50,-1,"Organge");
+        
+        function createReward(x,y){
+            var reward = game.createGameItem("reward",25);
+            var blueSquare = draw.rect(50,50,"blue");
+            blueSquare.x = -25;
+            blueSquare.Y = -25;
+            reward.addChild(blueSquare);
+            reward.x = x;
+            reward.y = y;
+            game.addGameItem(reward);
+            reward.velocityX = -1.25;
+            reward.omPlayerCollision = function (){
+                game.increaseScore(50);
+                game.changeIntegrity(50);
+                reward.fadeOut();
+            }
+        }
+
+        createReward(700, groundY - 60);
+        
         
         // DO NOT EDIT CODE BELOW HERE
     }
