@@ -108,10 +108,13 @@ var background = function (window) {
             for (var i = 0; i < buildings.length; i++){
                 var building = buildings[i];
                 building.x = building.x -0.3;
-            }
-            if (building.x < -300){
+            
+                if (building.x < -300){
                 building.x = canvasWidth;
-            }
+                } else if (building.y < -150){
+                building.y = canvasHeight;
+                }
+            }   
 
         } // end of update function - DO NOT DELETE
         
